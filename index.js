@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const path = require("node:path");
 const methodoverride=require("method-override");
 const Chat=require("./models/chat.js"); 
+const port = process.env.PORT||8080;
+
 app.set("views", path.join(__dirname,"views"));
 app.set("view engine","ejs");
 app.use(express.static(path.join(__dirname,"public")))
@@ -74,7 +76,6 @@ app.delete("/chats/:id", async (req,res)=>{
     console.log(Deleted_chat);
     res.redirect("/chats");
 })
-app.listen(8080,()=>{
-    console.log("server is listing on port 8080");
+app.listen(port,()=>{
+    console.log("server is listing on port 8080");
 });
-
