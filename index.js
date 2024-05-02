@@ -5,11 +5,21 @@ const path = require("node:path");
 const methodoverride=require("method-override");
 const Chat=require("./models/chat.js"); 
 const port = process.env.PORT||8080;
-app.set("views", path.join(__dirname,"views"));
-app.set("view engine","ejs");
-app.use(express.static(path.join(__dirname,"public")))
-app.use(express.urlencoded({extended: true}));
+// app.set("views", path.join(__dirname,"views"));
+// app.set("view engine","ejs");
+// app.use(express.static(path.join(__dirname,"public")))
+// app.use(express.urlencoded({extended: true}));
 app.use(methodoverride("_method"));
+
+app.use(express.static('public'))
+app.set('view engine','ejs')
+
+app.use(express.urlencoded({ extended: true }));
+app.use('/',require('./models/chat'))
+
+app.set('views','./views')
+
+
  main()
     .then(()=> {
          console.log("connection successful");
