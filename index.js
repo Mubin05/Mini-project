@@ -4,8 +4,7 @@ const mongoose = require("mongoose");
 const path = require("node:path");
 const methodoverride=require("method-override");
 const Chat=require("./models/chat.js"); 
-//const port = process.env.PORT||8080;
-const port=8000;
+const port = process.env.PORT||8080;
 app.set("views", path.join(__dirname,"views"));
 app.set("view engine","ejs");
 app.use(express.static(path.join(__dirname,"public")))
