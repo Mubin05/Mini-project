@@ -4,11 +4,22 @@ const mongoose = require("mongoose");
 const path = require("node:path");
 const methodoverride=require("method-override");
 const Chat=require("./models/chat.js"); 
-app.set("views", path.join(__dirname,"views"));
-app.set("view engine","ejs");
-app.use(express.static(path.join(__dirname,"public")))
-app.use(express.urlencoded({extended: true}));
+const port = process.env.PORT||8080;
+// app.set("views", path.join(__dirname,"views"));
+// app.set("view engine","ejs");
+// app.use(express.static(path.join(__dirname,"public")))
+// app.use(express.urlencoded({extended: true}));
 app.use(methodoverride("_method"));
+
+app.use(express.static('public'))
+app.set('view engine','ejs')
+
+app.use(express.urlencoded({ extended: true }));
+app.use('/',require('./models/chat'))
+
+app.set('views','./views')
+
+
  main()
     .then(()=> {
          console.log("connection successful");
@@ -74,7 +85,6 @@ app.delete("/chats/:id", async (req,res)=>{
     console.log(Deleted_chat);
     res.redirect("/chats");
 })
-app.listen(8080,()=>{
-    console.log("server is listing on port 8080");
+app.listen(port,()=>{
+    console.log('server is listing on port http://127.0.0.1:${port}');
 });
-
